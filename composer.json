@@ -21,13 +21,13 @@
   },
   "autoload": {
     "psr-4": {
-      "GHAPI\\": "src/"
+      "GHAPI\\": "src/GHAPI/"
     }
   },
   "require-dev": {
     "clue/phar-composer": "^1.2"
   },
   "bin": [
-    "/src/runner.php"
+    "/src/bootstrap.php"
   ]
 }
