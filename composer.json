@@ -1,0 +1,33 @@
+{
+  "name": "semseysandor/github-api",
+  "description": "Client for GitHub REST API",
+  "keywords": [
+    "github",
+    "REST",
+    "API",
+    "client",
+    "wrapper",
+    "cli"
+  ],
+  "readme": "README.md",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Sandor Semsey",
+      "email": "sandor@es-progress.hu"
+    }
+  ],
+  "require": {
+  },
+  "autoload": {
+    "psr-4": {
+      "GHAPI\\": "src/"
+    }
+  },
+  "require-dev": {
+    "clue/phar-composer": "^1.2"
+  },
+  "bin": [
+    "/src/runner.php"
+  ]
+}
