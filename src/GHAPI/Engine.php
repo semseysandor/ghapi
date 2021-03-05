@@ -3,6 +3,7 @@
 namespace GHAPI;
 
 use Github\Client;
+use Throwable;
 
 /**
  * Engine Class
@@ -25,13 +26,16 @@ class Engine
 
     /**
      * Engine constructor.
-     * @param string $token
+     *
+     * @param string $token GitHub token
+     * @param int $argc Number of arguments passed to the script
+     * @param array $argv Array of command line arguments
      */
-    public function __construct(string $token,int $argc, array $argv)
+    public function __construct(string $token, int $argc, array $argv)
     {
-        $this->token=$token;
-        $this->argc=$argc;
-        $this->argv=$argv;
+        $this->token = $token;
+        $this->argc = $argc;
+        $this->argv = $argv;
     }
 
     /**
@@ -39,16 +43,20 @@ class Engine
      */
     public function run()
     {
-        echo "TESTING\n";
-        ;
-        array_shift($this->argv);
-        $this->action=$this->argv[0];
+        try {
+            echo "TESTING\n";
+            array_shift($this->argv);
+            $this->action = $this->argv[0] ?? "";
 
-        echo $this->action;
-        $client=new Client();
-        $client->authenticate($this->token,null,Client::AUTH_ACCESS_TOKEN);
-        $org=$client->user()->orgs();
+            echo $this->action;
+            $client = new Client();
+            $client->authenticate($this->token, null, Client::AUTH_ACCESS_TOKEN);
+            $org = $client->user()->orgs();
 
-        echo "\n";
+            echo "\n";
+        } catch (Throwable $ex) {
+            printf("\nFATAL ERROR: %s\n", $ex->getMessage());
+            exit($ex->getCode());
+        }
     }
 }
