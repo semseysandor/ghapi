@@ -1,13 +1,13 @@
 <?php
 
-// Strict typing
 declare(strict_types=1);
 
-// Autoloader
 use GHAPI\Engine;
 
 include '../vendor/autoload.php';
-var_dump($argc);
-var_dump($argv);
-$engine = new Engine("xxxxxxxxxxxxxxxxxxxx",$argc,$argv);
+
+# Get Github token from env var
+$token = $_ENV['GH_TOKEN'] ?? "";
+
+$engine = new Engine($token, $argc, $argv);
 $engine->run();
