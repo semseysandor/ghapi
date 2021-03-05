@@ -21,7 +21,7 @@ mkdir -p "${project_root}/build"
 rm -rf ${project_root}/build/*
 
 # Create PHAR
-"${php_ex}" -d phar.readonly=off "${creator}" build "${project_root}" "${output_file}"
+"${php_ex}" -d phar.readonly=off "${creator}" -q build "${project_root}" "${output_file}"
 
 # Set execute bit
 chmod +x "${output_file}"
