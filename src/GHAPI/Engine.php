@@ -26,6 +26,8 @@ class Engine
 
     protected string $action;
 
+
+
     /**
      * Engine constructor.
      *
@@ -62,20 +64,31 @@ class Engine
             foreach ($repo as $item) {
 
                 $repo_name = $item['name'];
-                echo "Repo: ${repo_name}";
+//                var_dump($item);
+
+                if ($repo_name!='postfixadmin') {
+                    continue;
+                }
+                printf("Repo: %s\n", $repo_name);
 
                 $repo_labels = $labels->all($org, $repo_name);
 
                 foreach ($repo_labels as $item) {
 
-                    $label_name = $item['name'];
-                    $label_desc = $item['description'];
-                    $label_color = $item['color'];
-                    printf("\nName: %s\n", $label_name);
-                    printf("Desc: %s\n", $label_desc);
-                    printf("Color: %s\n", $label_color);
-                }
 
+//
+                    $label_name = $item['name'];
+//                    $label_desc = $item['description'];
+//                    $label_color = $item['color'];
+                    printf("\nName: %s", $label_name);
+
+//                    $labels->deleteLabel($org,$repo_name,$label_name);
+
+//                    var_dump($labels->show($org,$repo_name,$label_name));
+//                    printf("Desc: %s\n", $label_desc);
+//                    printf("Color: %s\n", $label_color);
+                }
+//
                 break;
             }
 
