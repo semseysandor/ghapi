@@ -2,6 +2,8 @@
 
 namespace GHAPI;
 
+use Github\Api\Issue;
+use Github\Api\Repository\Labels;
 use Github\Client;
 use Throwable;
 
@@ -44,14 +46,38 @@ class Engine
     public function run()
     {
         try {
-            echo "TESTING\n";
             array_shift($this->argv);
             $this->action = $this->argv[0] ?? "";
-
             echo $this->action;
+
+            // Authenticate
             $client = new Client();
             $client->authenticate($this->token, null, Client::AUTH_ACCESS_TOKEN);
-            $org = $client->user()->orgs();
+
+            $org = 'es-progress';
+            // Action
+            $repo = $client->repo()->org($org);
+            $labels = $client->issue()->labels();
+
+            foreach ($repo as $item) {
+
+                $repo_name = $item['name'];
+                echo "Repo: ${repo_name}";
+
+                $repo_labels = $labels->all($org, $repo_name);
+
+                foreach ($repo_labels as $item) {
+
+                    $label_name = $item['name'];
+                    $label_desc = $item['description'];
+                    $label_color = $item['color'];
+                    printf("\nName: %s\n", $label_name);
+                    printf("Desc: %s\n", $label_desc);
+                    printf("Color: %s\n", $label_color);
+                }
+
+                break;
+            }
 
             echo "\n";
         } catch (Throwable $ex) {
