@@ -30,10 +30,10 @@ class Organization
     /**
      * Organization constructor.
      *
-     * @param string $org_name
+     * @param string $org_name Name of organization
      */
     public function __construct(string $org_name)
     {
-        $this->orgName=$org_name;
+        $this->orgName = $org_name;
     }
 }
