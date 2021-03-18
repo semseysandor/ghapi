@@ -1,4 +1,10 @@
 <?php
+/*
+ * Copyright (c) 2021. Sandor Semsey <sandor@es-progress.hu
+ *
+ * This work is licensed under the MIT license.
+ * For the details, see: https://choosealicense.com/licenses/mit/
+ */
 
 namespace GHAPI;
 
@@ -25,7 +31,6 @@ class Engine
     protected array $argv;
 
     protected string $action;
-
 
 
     /**
@@ -66,7 +71,7 @@ class Engine
                 $repo_name = $item['name'];
 //                var_dump($item);
 
-                if ($repo_name!='postfixadmin') {
+                if ($repo_name != 'postfixadmin') {
                     continue;
                 }
                 printf("Repo: %s\n", $repo_name);
